@@ -1,0 +1,4 @@
+import {createContext,useContext,useMemo,useState} from 'react';
+const CartContext=createContext();
+export function CartProvider({children}){const [cart,setCart]=useState([]);const add=item=>setCart(c=>{const x=c.find(i=>i.id===item.id);return x?c.map(i=>i.id===item.id?{...i,qty:i.qty+1}:i):[...c,{...item,qty:1}]});const dec=id=>setCart(c=>c.flatMap(i=>i.id===id?(i.qty>1?[{...i,qty:i.qty-1}]:[]):[i]));const remove=id=>setCart(c=>c.filter(i=>i.id!==id));const clear=()=>setCart([]);const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);const tax=Math.round(subtotal*.05);const total=subtotal+tax;return <CartContext.Provider value={{cart,add,dec,remove,clear,subtotal,tax,total,count:cart.reduce((s,i)=>s+i.qty,0)}}>{children}</CartContext.Provider>}
+export const useCart=()=>useContext(CartContext);
