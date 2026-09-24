@@ -2,6 +2,7 @@ import {HashRouter,Routes,Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollTop from './components/ScrollTop';
+import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import About from './pages/About';
@@ -15,14 +16,16 @@ export default function App(){
     <CartProvider>
       <ScrollTop/>
       <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/menu" element={<Menu/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/gallery" element={<Gallery/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/order" element={<Order/>}/>
-      </Routes>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/menu" element={<Menu/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/gallery" element={<Gallery/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/order" element={<Order/>}/>
+        </Routes>
+      </ErrorBoundary>
       <Footer/>
     </CartProvider>
   </HashRouter>
