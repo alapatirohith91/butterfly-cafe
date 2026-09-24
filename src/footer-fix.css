@@ -1,0 +1,13 @@
+/* Footer layout and contact fixes */
+footer{width:100%;max-width:100%;overflow:hidden}
+.footer-top,.footer-bottom{width:100%;max-width:100%;min-width:0}
+.footer-top>div{min-width:0}
+.footer-top a,.footer-top span{min-width:0;overflow-wrap:anywhere}
+.footer-top{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr)!important}
+@media (max-width:900px){
+  .footer-top{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:36px!important}
+}
+@media (max-width:600px){
+  .footer-top{grid-template-columns:1fr!important;gap:28px!important}
+  .footer-bottom{flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
+}
